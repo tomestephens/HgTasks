@@ -1,0 +1,9 @@
+Hg Tasks
+
+The goal of this project is simple - to create a set of easy to use and effective tasks for working with Hg in NAnt. The primary use
+case revolves around using hg within a continuous integration or automated build situation. These tasks should both simplify and 
+standardize that process and allow for greater flexibility, without having an NAnt script file to act as the task. Personally, I don't
+like using the script tag for anything more complex than a few lines, I find it difficult to read. However, I plan to have this project
+create an NAnt xml output version of the script as well as the compiled dll for those who prefer it. Using the script file will make it
+easier to edit and customize for specific situations.
+

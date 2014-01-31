@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clone.cs" />
-    <Compile Include="GetTag.cs" />
+    <Compile Include="GetChangeset.cs" />
     <Compile Include="HgDefaults.cs" />
     <Compile Include="HgProcess.cs" />
     <Compile Include="Prepare.cs" />

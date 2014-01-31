@@ -6,11 +6,9 @@ using NAnt.Core.Attributes;
 namespace HgTasks
 {
     /// <summary>
-    /// A task to run hg verify
+    /// A task to run hg clone
     /// 
-    /// You can optionally delete the repository if an error is encountered.
-    /// I use this on our continuous integration server where occasionally the
-    /// repo becomes corrupted - then I can easily re-clone the repo before continuing.
+    /// Optionally you can have it delete and re-clone if the repo already exists
     /// </summary>
     [TaskName("hg_clone")]
     public class Clone : Task

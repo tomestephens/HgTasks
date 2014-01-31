@@ -6,8 +6,12 @@ using NAnt.Core.Attributes;
 
 namespace HgTasks
 {
-    [TaskName("hg_get_tag")]
-    public class GetTag : Task
+    /// <summary>
+    /// Get the Changeset of the tip of the repo and put it
+    /// in to the "changeset" property
+    /// </summary>
+    [TaskName("hg_get_changeset")]
+    public class GetChangeset : Task
     {
         private DirectoryInfo repository;
         /// <summary>
@@ -40,7 +44,7 @@ namespace HgTasks
 
             HgProcess process = HgProcess.Run(Command, Repository.FullName, FailOnError);
 
-            string tag = "";
+            string cs = "";
             string[] lines = process.StandardOutput.Split('\n');
 
             foreach (string line in lines)
@@ -48,13 +52,13 @@ namespace HgTasks
                 if (line.Contains("changeset:"))
                 {
                     string[] chunks = line.Split(':');
-                    tag = chunks[2];
+                    cs = chunks[2];
                 }
             }
 
-            Project.Properties["HgTag"] = tag;
+            Project.Properties["changeset"] = cs;
 
-            Log(Level.Debug, "Set HgTag property to {0}.", tag);
+            Log(Level.Debug, "Set changeset property to {0}.", cs);
             Log(Level.Info, "Completed.");
         }
 

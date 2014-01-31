@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="generate_release">
+	<loadtasks path="..\libs\extensions" verbose="true" />
+
+	<target name="generate_release" description="Generate Release">
+		<property name="MSBuildPath" value="C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe" />
+		<exec program="${MSBuildPath}">
+			<arg line='"..\src\HgTasks.sln"' />
+			<arg line="/property:Configuration=Release" />
+			<arg value="/nologo" />
+			<arg value="/m" />
+		</exec>
+
+		<proj_to_script project="..\src\HgTasks\HgTasks.csproj" output="..\output\HgTasks.build" />
+
+		<delete>
+			<fileset basedir="..\output">
+				<exclude name="HgTasks.dll" />
+				<exclude name="HgTasks.build" />
+				<include name="*/**" />
+			</fileset>
+		</delete>
+
+		<zip zipfile="..\release.zip">
+			<fileset basedir="..\output">
+				<include name="*/**" />
+			</fileset>
+			<fileset basedir="..\">
+				<include name="readme" />
+				<include name="license" />
+			</fileset>
+		</zip>
+	</target>
+</project>
